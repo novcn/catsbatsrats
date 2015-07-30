@@ -18,30 +18,30 @@
           {"number-spout" :shuffle} ;; receives tuples from number-spout
           "bolts.hash.HashTable" ;; python class to run
           ;; output specification
-          {"c" ["word"] ;streamid ["tuple key"]
-           "b" ["word"]
-           "r" ["word"]}
+          {"c" ["demon"] ;streamid ["tuple key"]
+           "b" ["demon"]
+           "r" ["demon"]}
           :p 4
           )
      "cat-bolt" (python-bolt-spec
           options
           {["hash-bolt" "c"] :shuffle} ;subscribe to hash-bolt @ id c
           "bolts.demons.Cats" ;fire Cats bolt
-          ["demon"] ; output specification, not used
+          [] ; output specification, not used
           :p 4
           )
      "bat-bolt" (python-bolt-spec
           options
           {["hash-bolt" "b"] :shuffle}
           "bolts.demons.Bats"
-          ["demon"]
+          []
           :p 4
           )
      "rat-bolt" (python-bolt-spec
           options
           {["hash-bolt" "r"] :shuffle}
           "bolts.demons.Rats"
-          ["demon"]
+          []
           :p 4
           )
     }
