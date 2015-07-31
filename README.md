@@ -8,22 +8,22 @@ Output specification (topologies/*.clj) for a bolt or spout, see
 [Clojure-DSL](http://storm.apache.org/documentation/Clojure-DSL.html)
 for more info
 ```
-   //streamid ["tuple_key"], the "Cats" bolt will subscribe to the stream of id "c" and so on.
+   ;;streamid ["tuple"]
+   ;;the "Cats" bolt will subscribe to the stream of id "c" and so on.
    {"c" ["demon"]
    "b" ["demon"]
    "r" ["demon"]}
 ```
 
-Code choosing which streamid to emit to (src/bolts/*.py |
-src/spouts/*.py)
+Code choosing which streamid to emit to (src/bolts/\*.py|src/spouts/\*.py)
 ```
   streamid = #some computation
-  self.emit(["tuples"], stream=streamid) 
+  self.emit(["tuples"], stream=streamid)
 ```
 
 Input specification (topologies/*.clj)
 
 ```
-  //subscribe Cats bolt to hash-bolt with streamid "c"
+  ;;subscribe Cats bolt to hash-bolt with streamid "c"
   {["hash-bolt" "c"] :shuffle}
 ```
